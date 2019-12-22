@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+    @include('includes.message-block')
     <section class = "row new-post">
         <div class="col-md-6 col-md-offset-3">
             <header>
@@ -27,7 +28,7 @@
                     <a href="#">Like</a> |
                     <a href="#">Dislike</a> |
                     <a href="#">Edit</a> |
-                    <a href="#">Deleted</a> |
+                    <a href="#">Delete</a> |
                 </div>
             </article>
             <article class="post">
