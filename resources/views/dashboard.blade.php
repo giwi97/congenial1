@@ -19,30 +19,25 @@
     <section class="row posts">
         <div class="col-md-6 col-md-offset-3">
             <header><h3>Stories from the world.....</h3></header>
-            <article class="post">
-                <p>I ain't got cash, i ain't got cash, but i got you baby</p>
-                <div class="info">
-                    Posted by Giwantha on 12 December 2016
-                </div>
-                <div class="interaction">
-                    <a href="#">Like</a> |
-                    <a href="#">Dislike</a> |
-                    <a href="#">Edit</a> |
-                    <a href="#">Delete</a> |
-                </div>
-            </article>
-            <article class="post">
-                <p>I ain't got cash, i ain't got cash, but i got you baby</p>
-                <div class="info">
-                    Posted by Giwantha on 12 December 2016
-                </div>
-                <div class="interaction">
-                    <a href="#">Like</a> |
-                    <a href="#">Dislike</a> |
-                    <a href="#">Edit</a> |
-                    <a href="#">Deleted</a> |
-                </div>
-            </article>
+
+            @foreach($posts as $post)
+                <article class="post">
+                    <p>{{$post->body}}</p>
+                    <div class="info">
+                        Posted by {{$post->user->first_name}} on {{$post->created_at}}
+                    </div>
+                    <div class="interaction">
+                        <a href="#">Like</a> |
+                        <a href="#">Dislike</a>
+                        @if(Auth::user() == $post->user)
+                            |
+                            <a href="#" id="post-edit" data-postid = "{{$post->id}}">Edit</a> |
+                            <a href="{{route('post.delete', ['post_id'=>$post->id])}}">Delete</a>
+                        @endif
+                    </div>
+                </article>
+            @endforeach
+
         </div>
     </section>
 @endsection
